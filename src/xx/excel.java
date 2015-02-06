@@ -1141,10 +1141,19 @@ public class excel
 
 	public static String writecell (String ReadOrderFromFile, int row, int col, String result) throws IOException
 	{
-		int x = 0;
-		FileInputStream readfile=new FileInputStream(ReadOrderFromFile);
+		System.out.println("-----------------------------------------------------------------------");
+		System.out.println("-----------------------------------------------------------------------");
+		System.out.println(row);
+		System.out.println(col);
+		System.out.println(result);
+		System.out.println("-----------------------------------------------------------------------");
+		System.out.println("-----------------------------------------------------------------------");
+		return result;
+		
+		/*		int x = 0;
+	FileInputStream readfile=new FileInputStream(ReadOrderFromFile);
 		HSSFWorkbook readfile1=new HSSFWorkbook(readfile);
-		HSSFSheet readsheet=readfile1.getSheetAt(0);
+	HSSFSheet readsheet=readfile1.getSheetAt(0);
 		HSSFRow readrow=readsheet.getRow(x);
 		HSSFCell readcellgroup=readrow.getCell(1); //อ่านค่าหมวดกลุ่มธุรกิจ
 		HSSFCell readcell=readrow.getCell(0); //อ่านค่าหมวดธุรกิจ
@@ -1158,7 +1167,7 @@ public class excel
 		readfile1.write(fout);
 		fout.close();
 		System.out.println("closeeeeee");
-		return result ;
+	//	return result ;*/
 	
 	}
 	
