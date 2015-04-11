@@ -10,7 +10,7 @@ public class MainRun extends Engine{
 	//////////////// config //////////////////
 
 	String fiscalYear="2555"; //// ปีในการค้นหา
-	int StratGroup = 6; ///// เลขหมวด เริ่ม จาก A = 0 ,B = 1 ตามลำดับถึงหมด U
+	int StratGroup = 5; ///// เลขหมวด เริ่ม จาก A = 0 ,B = 1 ตามลำดับถึงหมด U
 	int StratSubGroupNum = 0; ///// กลุ่มย่อย ตามลำดับ Elliment บนหน้าเว็บ 
 	int selectProvince = 16; ///// เลขจังหวัด ตาม ARRAY ด้านล่าง
 	String zone="N"; //// ภาคในการค้นหา ควร เปลี่ยนให้สอดคร้องการจังหวัด
@@ -217,10 +217,12 @@ public class MainRun extends Engine{
 						if(list>=10){
 							trvalue = 11;
 						}
+						int ResultValue = list;
 							for(tr=2;tr<=trvalue;++tr){
 								checkerrorValue = 99;
-								printStr(">> row In Page = "+(tr));
-								printStr(">> Result Data = "+(list-(tr+4)));
+								
+								printStr(">> row In Page = "+(tr-1));
+								printStr(">> Result Data = "+(ResultValue--));
 								printStr(">> PageNow = ("+pagenum+")");
 						
 						Boolean cheErrorAdd= true;

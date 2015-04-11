@@ -9,15 +9,15 @@ import java.util.concurrent.TimeUnit;
 
 public class db {
 	
-	/*private final String database = "sipa25"; 
-	private final String url = "jdbc:mysql://127.0.0.1/"+database+"?useUnicode=true&characterEncoding=UTF-8";
-	private final String usr = "root"; 
-	private final String pwd = ""; */
-	
-  private final String database = "sipadbd2"; 
+	private final String database = "sipadbd2"; 
 	private final String url = "jdbc:mysql://sipadbd2.ibsx.net/"+database+"?useUnicode=true&characterEncoding=UTF-8";
 	private final String usr = "1234.sipadbd2"; 
 	private final String pwd = "1234"; 
+	
+/*    private final String database = "sipadbd"; 
+	private final String url = "jdbc:mysql://myhost.com/"+database+"?useUnicode=true&characterEncoding=UTF-8";
+	private final String usr = "root"; 
+	private final String pwd = "041712611"; */
 	Connection conn;
 	private static Statement stmt;
 	

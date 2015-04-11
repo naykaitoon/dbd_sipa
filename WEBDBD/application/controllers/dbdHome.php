@@ -601,34 +601,7 @@ function searchResultText($order=1,$orderBy="DESC",$page = 1){
 		return $data;
 	}
 	
-	function a($pass=false){
-		if($pass=="123456789"){
-		$data2 = $this->db->get('detailcompany')->result_array();
-		$dss = array();
-		foreach($data2 as $dssssss){
-			array_push($dss,$dssssss['companyId']);
-		}
-
-		$this->db->select('companyId');
-		$this->db->where_not_in('companyId', $dss);
-		$data = $this->db->get('company')->result_array();
-		var_dump($data);
-		
-		foreach($data as $d){
-			$this->db->where('companyId',$d['companyId']);
-			$this->db->delete('company');
-			$this->db->where('companyId',$d['companyId']);
-			$this->db->delete('company');
-		}
-		$this->db->select('companyId');
-		$this->db->where_not_in('companyId', $dss);
-		$data = $this->db->get('company')->result_array();
-		var_dump($data);
-		}else{
-			echo "รหัสผิด";
-		}
-
-	}
+	
 	
 	function searchResultT($provinceId=NULL,$districtId=NULL,$cantonId=NULL,$companyTypeId=NULL,$year=NULL,$order=1,$orderBy="DESC",$page = 1){
 		$data['provinceId'] = $provinceId;
@@ -700,10 +673,66 @@ function searchResultText($order=1,$orderBy="DESC",$page = 1){
 		
 	
 		$this->load->view('home/searchResult',$data);
-			var_dump($data);
+
 		}
 	}
+function a($pass=false){
+		if($pass=="123456789"){
+		$data2 = $this->db->get('detailcompany')->result_array();
+		$dss = array();
+		foreach($data2 as $dssssss){
+			array_push($dss,$dssssss['companyId']);
+		}
 
+		$this->db->select('companyId');
+		$this->db->where_not_in('companyId', $dss);
+		$data = $this->db->get('company')->result_array();
+		var_dump($data);
+		
+		foreach($data as $d){
+			$this->db->where('companyId',$d['companyId']);
+			$this->db->delete('company');
+			$this->db->where('companyId',$d['companyId']);
+			$this->db->delete('company');
+		}
+		$this->db->select('companyId');
+		$this->db->where_not_in('companyId', $dss);
+		$data = $this->db->get('company')->result_array();
+		var_dump($data);
+		}else{
+			echo "รหัสผิด";
+		}
+
+	}
+	
+	function aa($pass=false){
+		if($pass=="123456789"){
+		$data2 = $this->db->get('company')->result_array();
+		$dss = array();
+		foreach($data2 as $dssssss){
+			array_push($dss,$dssssss['companyId']);
+		}
+
+		$this->db->select('companyId');
+		$this->db->where_not_in('companyId', $dss);
+		$data = $this->db->get('detailcompany')->result_array();
+		var_dump($data);
+		
+		foreach($data as $d){
+			$this->db->where('company.companyId',$d['companyId']);
+			$this->db->delete('company');
+			$this->db->where('detailcompany.companyId',$d['companyId']);
+			$this->db->delete('detailcompany');
+		}
+		$this->db->select('companyId');
+		$this->db->where_not_in('companyId', $dss);
+		$data = $this->db->get('company')->result_array();
+		var_dump($data);
+		}else{
+			echo "รหัสผิด";
+		}
+
+	}
 }
 
 ?>
