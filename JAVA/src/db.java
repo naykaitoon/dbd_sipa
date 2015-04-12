@@ -9,15 +9,15 @@ import java.util.concurrent.TimeUnit;
 
 public class db {
 	
-	private final String database = "sipadbd2"; 
+/*	private final String database = "sipadbd2"; 
 	private final String url = "jdbc:mysql://sipadbd2.ibsx.net/"+database+"?useUnicode=true&characterEncoding=UTF-8";
 	private final String usr = "1234.sipadbd2"; 
-	private final String pwd = "1234"; 
+	private final String pwd = "1234"; */
 	
-/*    private final String database = "sipadbd"; 
-	private final String url = "jdbc:mysql://myhost.com/"+database+"?useUnicode=true&characterEncoding=UTF-8";
+    private final String database = "sipadbd"; 
+	private final String url = "jdbc:mysql://localhost/"+database+"?useUnicode=true&characterEncoding=UTF-8";
 	private final String usr = "root"; 
-	private final String pwd = "041712611"; */
+	private final String pwd = ""; 
 	Connection conn;
 	private static Statement stmt;
 	
@@ -41,10 +41,24 @@ public class db {
 	public void closedb() throws Exception{
 		conn.close();
 	}
-	public int add_company(String[] val,String companytypeId) throws Exception {
-		ResultSet rsg = stmt.executeQuery( "SELECT `companyId` FROM `"+database+"`.`company` WHERE `companyNo` = '"+val[2]+"' LIMIT 1" );
+	public int checkCompany(String[] val,String companytypeId) throws Exception {
+	ResultSet rsg = stmt.executeQuery( "SELECT `companyId` FROM `"+database+"`.`company` WHERE `companyNo` = '"+val[2]+"' LIMIT 1" );
 		
 		if(!rsg.next()){
+			ResultSet returnValue = stmt.executeQuery( "SELECT `companyId` FROM `company` ORDER BY `companyId` DESC LIMIT 1");
+			while (returnValue.next()) {
+				companyId = returnValue.getInt("companyId");	
+				
+			}
+		}else{
+			System.out.println(">> Data is repeatedly skip Next Data");
+			System.out.println("-------------------------------------");
+			companyId = 0;
+		}
+		return companyId;
+	}
+	public int add_company(String[] val,String companytypeId) throws Exception {
+
 		try {
 			ResultSet rs = stmt.executeQuery( "SELECT * FROM `province` WHERE `provinceName` LIKE '%"+val[7]+"%' ORDER BY `provinceName` ASC" );
 			while (rs.next()) {
@@ -71,19 +85,14 @@ public class db {
 				companyId = returnValue.getInt("companyId");	
 				
 			}
-			System.out.println(">> AddData to company table Complete! : "+val[3]+" ID = "+companyId);
+			System.out.println(">> AddData to company table Complete! : ID = "+companyId);
 		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return companyId;
-		}else{
-			
-			System.out.println(">> Data is repeatedly skip Next Data");
-			System.out.println("-------------------------------------");
-			return 0;
-		}
+	
 		
 	}
 	
@@ -168,9 +177,8 @@ public class db {
 		+ " "+companyId+","
 		+ " '"+year[ii]+"');";	
 
-			connectDB();
+	
 			stmt.execute(str);
-			closedb();
 	}
 
 	}

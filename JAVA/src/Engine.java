@@ -27,10 +27,10 @@ public class Engine {
 		driver.manage().timeouts().pageLoadTimeout(80, TimeUnit.SECONDS);
 		driver.get("http://datawarehouse.dbd.go.th/bdw/home/login.html");
 
-		driver.findElement(By.name("userName")).sendKeys("natta121@gmail.com");
+		driver.findElement(By.name("userName")).sendKeys("yamachiji_kung@msn.com");
 		System.out.println(">> INPUT Username");
 
-		driver.findElement(By.name("userPassword")).sendKeys("0897554452");
+		driver.findElement(By.name("userPassword")).sendKeys("fraychas");
 		System.out.println(">> INPUT Password");
 		System.out.println(">> INPUT capcha");
 		driver.findElement(By.name("captchaText")).getSize();	

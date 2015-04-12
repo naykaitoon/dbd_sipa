@@ -14,7 +14,7 @@ public class MainRun extends Engine{
 	int StratSubGroupNum = 0; ///// กลุ่มย่อย ตามลำดับ Elliment บนหน้าเว็บ 
 	int selectProvince = 16; ///// เลขจังหวัด ตาม ARRAY ด้านล่าง
 	String zone="N"; //// ภาคในการค้นหา ควร เปลี่ยนให้สอดคร้องการจังหวัด
-	String swichLimitProvince = "on";
+	String swichLimitProvince = "off";
 	
 	////////////////////////////////////////////////
 	
@@ -68,7 +68,7 @@ public class MainRun extends Engine{
 		if(swichLimitProvince=="off"){
 			StratGroup = 0;
 			StratSubGroupNum = 0; 
-			selectProvince = 0;
+			//selectProvince = 0;
 			lineSelectProvince = province.length-1;
 		}
 	for(provinceValue=selectProvince;provinceValue<=lineSelectProvince;provinceValue++){	
@@ -253,13 +253,11 @@ public class MainRun extends Engine{
 							}
 							
 		
-						sqls.connectDB();
-						companyId = sqls.add_company(company, ListSub[loopIn]);
-						check = false;
-						sqls.closedb();
 						
 							
-							
+							sqls.connectDB();
+							companyId = sqls.checkCompany(company, ListSub[loopIn]);
+							sqls.closedb();
 							////////////////////////////////////////////////////////////////////////////
 						if(companyId>0||companyId!=0){
 					
@@ -300,9 +298,8 @@ public class MainRun extends Engine{
 							}
 						}
 							}
-							sqls.connectDB();
-							sqls.add_detailcompany(companyId, detailcompany);
-							sqls.closedb();
+
+
 							WebElement selecttype2 = null;
 							check = true;
 							while (check == true) {
@@ -484,8 +481,11 @@ public class MainRun extends Engine{
 									}
 									}
 							}
-							
+							sqls.connectDB();
+							companyId = sqls.add_company(company, ListSub[loopIn]);
+							sqls.add_detailcompany(companyId, detailcompany);
 							sqls.add_finance(companyId, years,financeAndDe,financeAndDe2);
+							sqls.closedb();
 							printStr(">> addData finance group  "+ListSub[loopIn].substring(0, 5)+" Data Budgeting Year = "+years[0]+","+years[1]+","+years[2]+" Complete!");
 							printStr("----------------- \n");
 				
