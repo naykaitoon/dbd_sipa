@@ -29,8 +29,13 @@ class Search extends CI_Model {
 	$pageValue= 15;
 	$this->db->select('company.companyId,company.companyName,detailcompany.syndicate,detailcompany.titleCompany,detailcompany.dateRegister,detailcompany.status,budgetandfinace.totalIncome AS monnySum,budgetandfinace.profitLoss AS monnyRecive');
 	$this->db->join('budgetandfinace','budgetandfinace.companyId = company.companyId');
-	$this->db->where('budgetandfinace.year',$data['year']);
+
 	$this->db->join('detailcompany','detailcompany.companyId = company.companyId');
+			if($data['order']==1){
+			$this->db->order_by('monnySum',$data['orderBy']);
+		}else if($data['order']==2){
+			$this->db->order_by('monnyRecive',$data['orderBy']);
+		}
 		$this->db->where('company.provinceId',$data['provinceId']);
 	if($data['districtId']!="-"){
 		$this->db->where('company.districtId',$data['districtId']);
@@ -40,14 +45,10 @@ class Search extends CI_Model {
 	}
 		$this->db->where('company.companyTypeId',$data['companyTypeId']);
 
-		$this->db->where('detailcompany.status','ยังดำเนินกิจการอยู่');
 		
-		if($data['orderBy']=="budgetandfinace.totalIncome"){
-			$this->db->order_by('monnySum + 0',$data['order']);
-		}else if($data['orderBy']=="budgetandfinace.profitLoss"){
-			$this->db->order_by('monnyRecive + 0',$data['order']);
-		}
+		$this->db->where('budgetandfinace.year',$data['year']);
 
+		$this->db->where('detailcompany.status','ยังดำเนินกิจการอยู่');
 		$returnData = $this->db->get('company',$pageValue,$data['page'])->result_array();
 		$this->db->from('company');
 		
@@ -78,7 +79,7 @@ class Search extends CI_Model {
 	}
 		function getCompanyByText($data,$orderBy){
 	$pageValue= 15;
-	$this->db->select('company.companyId,company.companyName,detailcompany.titleCompany,detailcompany.syndicate,detailcompany.dateRegister,detailcompany.status,budgetandfinace.totalIncome AS monnySum,profitLoss AS monnyRecive');
+	$this->db->select('company.companyId,company.companyName,detailcompany.syndicate,detailcompany.titleCompany,detailcompany.dateRegister,detailcompany.status,budgetandfinace.totalIncome AS monnySum,budgetandfinace.profitLoss AS monnyRecive');
 		$this->db->join('budgetandfinace','budgetandfinace.companyId = company.companyId');
 		$this->db->where('budgetandfinace.year',$data['year']);
 		$this->db->join('detailcompany','detailcompany.companyId = company.companyId');
@@ -156,20 +157,22 @@ class Search extends CI_Model {
 	
 	function getCompanyAllGroup($data,$page,$url){
 		$pageValue= 15;
-		$this->db->select('company.companyId,company.companyName,detailcompany.titleCompany,detailcompany.syndicate,detailcompany.dateRegister,detailcompany.status,budgetandfinace.totalIncome AS monnySum,profitLoss AS monnyRecive');
+		$this->db->select('company.companyId,company.companyName,detailcompany.titleCompany,detailcompany.syndicate,detailcompany.dateRegister,detailcompany.status,budgetandfinace.year,budgetandfinace.totalIncome AS monnySum,profitLoss AS monnyRecive');
 		$this->db->join('budgetandfinace','budgetandfinace.companyId = company.companyId');
 		$this->db->join('detailcompany','detailcompany.companyId = company.companyId');
 		foreach($data as $d){
 			$this->db->or_where('company.companyId',$d['companyId']);
 		}
+		$this->db->group_by('company.companyId');
 		$returnData = $this->db->get('company',$pageValue,$page)->result_array();
 		$this->db->from('company');
 		$this->db->select('companyId');
 		foreach($data as $d){
 			$this->db->or_where('companyId',$d['companyId']);
 		}
+		$this->db->group_by('company.companyId');
 		$config['uri_segment'] = 4;
-		$config['total_rows'] = $this->db->count_all_results(); // ส
+		$config['total_rows'] = count($data); // ส
 		
 	
 		 $config['per_page'] = $pageValue;

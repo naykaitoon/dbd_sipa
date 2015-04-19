@@ -148,7 +148,7 @@ $('#d').change(function(e) {
   });
 $('#searchBt').click(function(){
 
-	var href = "<?php echo base_url();?>index.php/dbdHome/searchResult/"+$('#p').val()+"/"+$('#d').val()+"/"+$('#c').val()+"/"+$('#type').val()+"/"+$('#y').val()+"/1";
+	var href = "<?php echo base_url();?>index.php/dbdHome/searchResult/"+$('#p').val()+"/"+$('#d').val()+"/"+$('#c').val()+"/"+$('#type').val()+"/"+$('#y').val()+"/1/DESC";
 
 $( "html" ).addClass( "loading" );
 

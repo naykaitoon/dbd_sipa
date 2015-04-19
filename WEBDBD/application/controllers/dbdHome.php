@@ -380,17 +380,19 @@ function searchResultText($order=1,$orderBy="DESC",$page = 1){
 		$search['year'] = $rLog['year'];
 
 		$result = $this->Search->getCompanyIdAllGroup($search);
-		
+			
 			foreach($result as $r){
 				array_push($r,$rLog['year']);
 				array_push($allResult,$r);
 		
 			}
 		}
-
+	
 		$sentdata['allResultCount'] = count($allResult)+1;
+
 		$realResult = $this->Search->getCompanyAllGroup($allResult,$page,"dbdHome/searchByGroup/".$id);
 		
+
 		$sentdata['searchResult'] = $realResult;
 		$sentdata['page'] = $page+1;
 		$this->load->view('magData/searchResultGroup',$sentdata);
