@@ -378,7 +378,7 @@ function searchResultText($order=1,$orderBy="DESC",$page = 1){
 		$search['cantonId'] = $cantonId;
 		$search['companyTypeId'] = $rLog['companyTypeId'];
 		$search['year'] = $rLog['year'];
-
+		$year = $search['year'];
 		$result = $this->Search->getCompanyIdAllGroup($search);
 			
 			foreach($result as $r){
@@ -390,7 +390,7 @@ function searchResultText($order=1,$orderBy="DESC",$page = 1){
 	
 		$sentdata['allResultCount'] = count($allResult)+1;
 
-		$realResult = $this->Search->getCompanyAllGroup($allResult,$page,"dbdHome/searchByGroup/".$id);
+		$realResult = $this->Search->getCompanyAllGroup($allResult,$page,"dbdHome/searchByGroup/".$id,$year);
 		
 
 		$sentdata['searchResult'] = $realResult;

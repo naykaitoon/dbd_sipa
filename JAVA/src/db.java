@@ -3,7 +3,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Time;
 import java.util.concurrent.TimeUnit;
 
 
@@ -12,10 +11,15 @@ public class db {
 /*	private final String database = "sipadbd2"; 
 	private final String url = "jdbc:mysql://sipadbd2.ibsx.net/"+database+"?useUnicode=true&characterEncoding=UTF-8";
 	private final String usr = "1234.sipadbd2"; 
-	private final String pwd = "1234"; */
+	private final String pwd = "1234"; /*
 	
-    private final String database = "sipadbd"; 
-	private final String url = "jdbc:mysql://localhost/"+database+"?useUnicode=true&characterEncoding=UTF-8";
+  /*  private final String database = "sipadbd"; 
+	private final String url = "jdbc:mysql://192.168.2.199/"+database+"?useUnicode=true&characterEncoding=UTF-8";
+	private final String usr = "root"; 
+	private final String pwd = "041712611"; */
+	
+   private final String database = "sipadbd"; 
+	private final String url = "jdbc:mysql://127.0.0.1/"+database+"?useUnicode=true&characterEncoding=UTF-8";
 	private final String usr = "root"; 
 	private final String pwd = ""; 
 	Connection conn;
@@ -96,7 +100,7 @@ public class db {
 		
 	}
 	
-	public void add_detailcompany(int companyId,String[] value){
+	public void add_detailcompany(int companyId,String[] value) throws SQLException{
 		
 		String sqlStr = "INSERT DELAYED INTO `"+database+"`.`detailcompany` (`detailcompanyid`, `titleCompany`, `dateRegister`, `status`, `moneyRegister`, `address`, `noteGroup`, `object`, `yearSentStament`, `syndicate`, `partner`, `tel`, `fax`, `note`, `email`, `companyId`) VALUES (NULL, '"
 		+value[1]+"', '"+value[2]+"', '"+value[3]+"', '"+value[4]+"', '"+value[5]+"', '"+value[6]+"', '"+value[7]+"', '"+value[8]+"', '"+value[9]+"', '"+value[10]+"', '"+value[11]+"', '"+value[12]+"', '"+value[13]+"', '-', '"+companyId+"');";
@@ -105,8 +109,10 @@ public class db {
 			System.out.println(">> Add Data To Table CompanyDetial Complete!");
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			String sqlStr2 = "INSERT DELAYED INTO `"+database+"`.`detailcompany` (`detailcompanyid`, `titleCompany`, `dateRegister`, `status`, `moneyRegister`, `address`, `noteGroup`, `object`, `yearSentStament`, `syndicate`, `partner`, `tel`, `fax`, `note`, `email`, `companyId`) VALUES (NULL, '"
+					+value[1]+"', '"+value[2]+"', '"+value[3]+"', '"+value[4]+"', '"+value[5]+"', '"+value[6]+"', '"+value[7]+"', '"+value[8]+"', '"+value[9]+"', '"+value[10]+"', '-', '-', '-', '-', '"+companyId+"');";
+			stmt.execute(sqlStr2);
+			System.out.println(">> Add Data To Table CompanyDetial Complete!");
 		}
 		
 	}

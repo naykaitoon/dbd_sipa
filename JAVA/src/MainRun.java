@@ -10,9 +10,9 @@ public class MainRun extends Engine{
 	//////////////// config //////////////////
 
 	String fiscalYear="2555"; //// ปีในการค้นหา
-	int StratGroup = 5; ///// เลขหมวด เริ่ม จาก A = 0 ,B = 1 ตามลำดับถึงหมด U
+	int StratGroup = 0; ///// เลขหมวด เริ่ม จาก A = 0 ,B = 1 ตามลำดับถึงหมด U
 	int StratSubGroupNum = 0; ///// กลุ่มย่อย ตามลำดับ Elliment บนหน้าเว็บ 
-	int selectProvince = 16; ///// เลขจังหวัด ตาม ARRAY ด้านล่าง
+	int selectProvince = 0; ///// เลขจังหวัด ตาม ARRAY ด้านล่าง13
 	String zone="N"; //// ภาคในการค้นหา ควร เปลี่ยนให้สอดคร้องการจังหวัด
 	String swichLimitProvince = "off";
 	
@@ -33,25 +33,40 @@ public class MainRun extends Engine{
 	/////////////////
 
 	public void Run() throws Exception {
-		province= new String[17];
-		province[0]="กำแพงเพชร";
-		province[1]="ตาก";
-		province[2]="นครสวรรค์";
-		province[3]="น่าน";
-		province[4]="พะเยา";
-		province[5]="พิจิตร";
-		province[6]="พิษณุโลก";
-		province[7]="ลำปาง";
-		province[8]="ลำพูน";
-		province[9]="สุโขทัย";
-		province[10]="อุตรดิตถ์";
-		province[11]="อุทัยธานี";
-		province[12]="เชียงราย";
-		province[13]="เพชรบูรณ์";
-		province[14]="แพร่";
-		province[15]="แม่ฮ่องสอน";
-		province[16]="เชียงใหม่";
-
+		if(zone=="N"){
+			province= new String[17];
+			province[0]="กำแพงเพชร";
+			province[1]="ตาก";
+			province[2]="นครสวรรค์";
+			province[3]="น่าน";
+			province[4]="พะเยา";
+			province[5]="พิจิตร";
+			province[6]="พิษณุโลก";
+			province[7]="ลำปาง";
+			province[8]="ลำพูน";
+			province[9]="สุโขทัย";
+			province[10]="อุตรดิตถ์";
+			province[11]="อุทัยธานี";
+			province[12]="เชียงราย";
+			province[13]="เพชรบูรณ์";
+			province[14]="แพร่";
+			province[15]="แม่ฮ่องสอน";
+			province[16]="เชียงใหม่";
+		}else if(zone=="C"){
+			province= new String[12];
+			province[0]="กรุงเทพมหานคร";
+			province[1]="ชัยนาท";
+			province[2]="นครปฐม";
+			province[3]="นนทบุรี";
+			province[4]="ปทุมธานี";
+			province[5]="พระนครศรีอยุธยา";
+			province[6]="ลพบุรี";
+			province[7]="สมุทรปราการ";
+			province[8]="สมุทรสาคร";
+			province[9]="สระบุรี";
+			province[10]="สิงห์บุรี";
+			province[11]="อ่างทอง";
+		}
 		db sqls = new db();
 		printStr(">> Test Connect To DataBase...");
 		try {
@@ -175,11 +190,7 @@ public class MainRun extends Engine{
 					printStr("-----------------------------");
 					String company[] = new String[15];
 					for(int pagenum = 1;pagenum<=page;++pagenum){
-						
-			
-					
-					
-					
+	
 						WebElement pagenumEiss;
 						WebElement pagenumEi;
 						if((pagenum%10)==1&&pagenum>1){
@@ -251,16 +262,14 @@ public class MainRun extends Engine{
 									}
 					
 							}
-							
-		
-						
-							
+
 							sqls.connectDB();
 							companyId = sqls.checkCompany(company, ListSub[loopIn]);
 							sqls.closedb();
+				
 							////////////////////////////////////////////////////////////////////////////
 						if(companyId>0||companyId!=0){
-					
+							System.out.print(">> 1/8 - ");
 							WebElement selectMoney = null;
 								check = true;
 								while (check == true) {
@@ -273,6 +282,7 @@ public class MainRun extends Engine{
 										
 									}
 								}
+								System.out.print(" 2/8 - ");
 							selectMoney.click();
 							String[] detailcompany = null;
 							detailcompany = new String[20];
@@ -313,7 +323,7 @@ public class MainRun extends Engine{
 									check = true;
 								}
 							}
-						
+							System.out.print(" 3/8 - ");
 							String[] years;
 							years = new String[3];
 							String[][][] financeAndDe = new String[3][4][30];
@@ -331,7 +341,7 @@ public class MainRun extends Engine{
 								}
 							}
 						
-							
+							System.out.print(" 4/8 - ");
 							for(int five=3;five<=13;++five){
 								check = true;
 								while (check == true) {
@@ -352,7 +362,7 @@ public class MainRun extends Engine{
 									}
 									}
 							}
-							
+							System.out.print(" 5/8 - ");
 							years[1] = driver.findElement(By.xpath("html/body/div[2]/div[2]/div/div[5]/div[1]/div[2]/table/tbody/tr[1]/th[3]")).getText().toString();
 							
 							for(int five=3;five<=13;++five){
@@ -375,7 +385,7 @@ public class MainRun extends Engine{
 							}
 							}
 							}
-				
+							System.out.print(" 6/8 - ");
 							years[2] = driver.findElement(By.xpath("html/body/div[2]/div[2]/div/div[5]/div[1]/div[2]/table/tbody/tr[1]/th[4]")).getText().toString();
 					
 							for(int five=3;five<=13;++five){
@@ -435,7 +445,7 @@ public class MainRun extends Engine{
 								}
 							}
 							
-
+							System.out.print(" 7/8 - ");
 							
 				//			years[1] = driver.findElement(By.xpath("html/body/div[2]/div[2]/div/div[5]/div[1]/div[2]/table/tbody/tr[1]/th[3]")).getText().toString();
 							
@@ -481,6 +491,7 @@ public class MainRun extends Engine{
 									}
 									}
 							}
+							System.out.print(" 8/8\n>> GetdataText Complete And nextstep Add To DB....\n");
 							sqls.connectDB();
 							companyId = sqls.add_company(company, ListSub[loopIn]);
 							sqls.add_detailcompany(companyId, detailcompany);
@@ -580,7 +591,12 @@ public class MainRun extends Engine{
 		}catch(Exception e){
 			printStr(">> Can't Connect To DataBase");
 		}
-		
+		printStr("");
+		printStr("---------------------------------");
+		printStr(">> GetData All Complete!");
+		printStr(">> Close FireFox!");
+		printStr("---------------------------------");
+		driver.close();
 	}
 	private static int countlist(String a)
 	{

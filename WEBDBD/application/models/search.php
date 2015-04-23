@@ -155,7 +155,7 @@ class Search extends CI_Model {
 
 	}
 	
-	function getCompanyAllGroup($data,$page,$url){
+	function getCompanyAllGroup($data,$page,$url,$year){
 		$pageValue= 15;
 		$this->db->select('company.companyId,company.companyName,detailcompany.titleCompany,detailcompany.syndicate,detailcompany.dateRegister,detailcompany.status,budgetandfinace.year,budgetandfinace.totalIncome AS monnySum,profitLoss AS monnyRecive');
 		$this->db->join('budgetandfinace','budgetandfinace.companyId = company.companyId');
@@ -163,6 +163,7 @@ class Search extends CI_Model {
 		foreach($data as $d){
 			$this->db->or_where('company.companyId',$d['companyId']);
 		}
+		$this->db->where('budgetandfinace.year',$year);
 		$this->db->group_by('company.companyId');
 		$returnData = $this->db->get('company',$pageValue,$page)->result_array();
 		$this->db->from('company');
@@ -170,6 +171,7 @@ class Search extends CI_Model {
 		foreach($data as $d){
 			$this->db->or_where('companyId',$d['companyId']);
 		}
+		$this->db->where('budgetandfinace.year',$year);
 		$this->db->group_by('company.companyId');
 		$config['uri_segment'] = 4;
 		$config['total_rows'] = count($data); // ส
