@@ -10,11 +10,11 @@ public class MainRun extends Engine{
 	//////////////// config //////////////////
 
 	String fiscalYear="2555"; //// ปีในการค้นหา
-	int StratGroup = 0; ///// เลขหมวด เริ่ม จาก A = 0 ,B = 1 ตามลำดับถึงหมด U
-	int StratSubGroupNum = 0; ///// กลุ่มย่อย ตามลำดับ Elliment บนหน้าเว็บ 
+	int StratGroup = 2; ///// เลขหมวด เริ่ม จาก A = 0 ,B = 1 ตามลำดับถึงหมด U
+	int StratSubGroupNum = 162; ///// กลุ่มย่อย ตามลำดับ Elliment บนหน้าเว็บ 
 	int selectProvince = 0; ///// เลขจังหวัด ตาม ARRAY ด้านล่าง13
-	String zone="N"; //// ภาคในการค้นหา ควร เปลี่ยนให้สอดคร้องการจังหวัด
-	String swichLimitProvince = "off";
+	String zone="C"; //// ภาคในการค้นหา ควร เปลี่ยนให้สอดคร้องการจังหวัด
+	String swichLimitProvince = "on";
 	
 	////////////////////////////////////////////////
 	
@@ -179,7 +179,7 @@ public class MainRun extends Engine{
 					check = true;
 					while (check == true) {
 						try {
-					list = countlist(driver.findElement(By.xpath("html/body/div[2]/div[2]/div/div[3]/div[3]/b")).getText());
+					list = countlist(cutComma(driver.findElement(By.xpath("html/body/div[2]/div[2]/div/div[3]/div[3]/b")).getText()));
 					check = false;
 						} catch (org.openqa.selenium.TimeoutException e) {
 							check = true;
