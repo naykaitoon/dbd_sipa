@@ -68,7 +68,13 @@ class Home extends CI_Controller {
 
 	}
 	
-
+	function main(){
+		
+	}
+	function form(){
+		$this->load->view('test');
+	}
+	
 }
 
 ?>

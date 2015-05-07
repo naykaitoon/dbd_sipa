@@ -48,10 +48,10 @@ $('.deleteGroup').fancybox({
 $('.editType').fancybox({
 		openEffect  : 'fade',
 		closeEffect : 'fade',
-		maxWidth	: 850,
-		maxHeight	: 350,
-		minWidth	: 850,
-		minHeight	: 350,
+		maxWidth	: 900,
+		maxHeight	: 390,
+		minWidth	: 900,
+		minHeight	: 390,
 		fitToView	: true,
 		padding     : 5,
 		beforeClose : function() {

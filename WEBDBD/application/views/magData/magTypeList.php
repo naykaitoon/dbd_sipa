@@ -9,11 +9,11 @@
   <tbody>
  <?php foreach($type as $t){ ?> 
     <tr>
-      <td align="center" valign="top" nowrap="nowrap" style="font-size: 12px"><?php	echo $t['companyTypeId']; ?></td>
-      <td width="622" align="left" valign="top" nowrap="nowrap" style="font-size: 12px"><?php	echo $t['companyTypeName']; ?></td>
-      <td width="22" align="center" valign="top" nowrap="nowrap"><?php	echo $t['groupCompanyId']; ?></td>
-      <td width="70" align="center" valign="top" nowrap="nowrap"><a class="editType" data-fancybox-type="iframe" href="<?php echo base_url();?>index.php/dbdHome/formeditType/<?php echo $t['companyTypeId']; ?>"><img src="<?php echo base_url();?>img/edit.png" width="30" height="30"/></a></td>
-      <td width="30" align="center" valign="top" nowrap="nowrap"><a class="deleteType" data-fancybox-type="iframe" href="<?php echo base_url();?>index.php/dbdHome/deleteType/<?php echo $t['companyTypeId']; ?>"><img src="<?php echo base_url();?>img/delete.png" width="30" height="30"/></a></td>
+      <td align="center" valign="middle" nowrap="nowrap" style="font-size: 12px"><?php	echo $t['companyTypeId']; ?></td>
+      <td width="622" align="left" valign="middle" nowrap="nowrap" style="font-size: 12px"><?php	echo $t['companyTypeName']; ?></td>
+      <td width="22" align="center" valign="middle" nowrap="nowrap"><?php	echo $t['groupCompanyId']; ?></td>
+      <td width="70" align="center" valign="middle" nowrap="nowrap"><a class="editType" data-fancybox-type="iframe" href="<?php echo base_url();?>index.php/dbdHome/formeditType/<?php echo $t['companyTypeId']; ?>"><img src="<?php echo base_url();?>img/edit.png" width="30" height="30"/></a></td>
+      <td width="30" align="center" valign="middle" nowrap="nowrap"><a class="deleteType" data-fancybox-type="iframe" href="<?php echo base_url();?>index.php/dbdHome/deleteType/<?php echo $t['companyTypeId']; ?>"><img src="<?php echo base_url();?>img/delete.png" width="30" height="30"/></a></td>
     </tr>
   <?php	 }?>
   <tr>

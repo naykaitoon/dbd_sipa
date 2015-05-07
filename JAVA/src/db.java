@@ -101,18 +101,22 @@ public class db {
 	}
 	
 	public void add_detailcompany(int companyId,String[] value) throws SQLException{
-		
+			if(value[11].isEmpty()){
+				value[11]="-";
+			}
+			if(value[12].isEmpty()){
+				value[12]="-";
+			}
+			
 		String sqlStr = "INSERT DELAYED INTO `"+database+"`.`detailcompany` (`detailcompanyid`, `titleCompany`, `dateRegister`, `status`, `moneyRegister`, `address`, `noteGroup`, `object`, `yearSentStament`, `syndicate`, `partner`, `tel`, `fax`, `note`, `email`, `companyId`) VALUES (NULL, '"
-		+value[1]+"', '"+value[2]+"', '"+value[3]+"', '"+value[4]+"', '"+value[5]+"', '"+value[6]+"', '"+value[7]+"', '"+value[8]+"', '"+value[9]+"', '"+value[10]+"', '"+value[11]+"', '"+value[12]+"', '"+value[13]+"', '-', '"+companyId+"');";
+		+value[1]+"', '"+value[2]+"', '"+value[3]+"', '"+value[4]+"', '"+value[5]+"', '"+value[6]+"', '"+cutCode(value[7])+"', '"+cutCode(value[8])+"', '"+cutCode(value[9])+"', '"+cutCode(value[10])+"', '"+value[11]+"', '"+value[12]+"', '"+value[13]+"', '-', '"+companyId+"');";
 		try {
+		
 			stmt.execute(sqlStr);
 			System.out.println(">> Add Data To Table CompanyDetial Complete!");
 			
 		} catch (SQLException e) {
-			String sqlStr2 = "INSERT DELAYED INTO `"+database+"`.`detailcompany` (`detailcompanyid`, `titleCompany`, `dateRegister`, `status`, `moneyRegister`, `address`, `noteGroup`, `object`, `yearSentStament`, `syndicate`, `partner`, `tel`, `fax`, `note`, `email`, `companyId`) VALUES (NULL, '"
-					+value[1]+"', '"+value[2]+"', '"+value[3]+"', '"+value[4]+"', '"+value[5]+"', '"+value[6]+"', '"+value[7]+"', '"+value[8]+"', '"+value[9]+"', '"+value[10]+"', '-', '-', '-', '-', '"+companyId+"');";
-			stmt.execute(sqlStr2);
-			System.out.println(">> Add Data To Table CompanyDetial Complete!");
+				
 		}
 		
 	}
@@ -237,6 +241,13 @@ public ResultSet searchGroup(String g) throws Exception {
 		
 	
 	}
+public static String cutCode(String str) {
+	if(str.indexOf("'") != -1){
+		str = str.replaceAll("'",""); 
+	}
+	return str;
+	
+}
 
 	
 }

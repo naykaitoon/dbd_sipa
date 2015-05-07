@@ -29,7 +29,7 @@ select{
       <td width="87%" nowrap="nowrap"><?php echo $g['memTel'];?></td>
     </tr>
      <tr>
-      <th width="13%" colspan="2" nowrap="nowrap"><a class="magProfi" data-fancybox-type="iframe" href="<?php echo base_url();?>index.php/dbdHome/editProFi" >แก้ไขข้อมูลส่วนตัว</a></th>
+      <th width="13%" colspan="2" nowrap="nowrap"><a class="magProfi" data-fancybox-type="iframe" href="<?php echo base_url();?>index.php/dbdHome/editProFi" ><input type="button"  value="แก้ไขข้อมูลส่วนตัว" class="buttonHome"></a></th>
     </tr>
 </table>
 	<?php }?>

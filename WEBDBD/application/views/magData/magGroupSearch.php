@@ -1,7 +1,8 @@
 <script>
-$('.loadcombobox').load('<?php echo base_url();?>index.php/dbdHome/magGroupSearchList/');
+$('.loadcombobox').hide().load('<?php echo base_url();?>index.php/dbdHome/magGroupSearchList/').fadeIn('fast');
 $('#groupCompanyId').change(function(){
-	$('.loadcombobox').load('<?php echo base_url();?>index.php/dbdHome/magGroupSearchList/'+$(this).val()+'');
+	$('.loadcombobox').fadeOut('fast').load('<?php echo base_url();?>index.php/dbdHome/magGroupSearchList/'+$(this).val()+'').fadeIn('fast');
+
 });
 </script>
 <script type="text/javascript">
@@ -136,7 +137,7 @@ $('#d').change(function(e) {
         
         <p>
     <label for="select">เลือกกลุ่มธุรกิจ</label>
-    <select  name="groupCompanyId" id="groupCompanyId" class="inputText" size="6" autofocus>
+    <select  name="groupCompanyId" id="groupCompanyId" class="inputText" size="15" autofocus>
       <?php foreach($group as $g){ ?> 
       <option value="<?php echo $g['groupCompanyId'];?>" <?php if($g['groupCompanyId']==$group[0]['groupCompanyId']){ ?> selected <?php }?>><?php echo $g['detail'];?></option>
       <?php	 } ?>

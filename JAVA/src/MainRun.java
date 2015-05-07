@@ -11,8 +11,8 @@ public class MainRun extends Engine{
 
 	String fiscalYear="2555"; //// ปีในการค้นหา
 	int StratGroup = 2; ///// เลขหมวด เริ่ม จาก A = 0 ,B = 1 ตามลำดับถึงหมด U
-	int StratSubGroupNum = 162; ///// กลุ่มย่อย ตามลำดับ Elliment บนหน้าเว็บ 
-	int selectProvince = 0; ///// เลขจังหวัด ตาม ARRAY ด้านล่าง13
+	int StratSubGroupNum = 0; ///// กลุ่มย่อย ตามลำดับ Elliment บนหน้าเว็บ 
+	int selectProvince = 2; ///// เลขจังหวัด ตาม ARRAY ด้านล่าง13
 	String zone="C"; //// ภาคในการค้นหา ควร เปลี่ยนให้สอดคร้องการจังหวัด
 	String swichLimitProvince = "on";
 	
@@ -493,9 +493,12 @@ public class MainRun extends Engine{
 							}
 							System.out.print(" 8/8\n>> GetdataText Complete And nextstep Add To DB....\n");
 							sqls.connectDB();
-							companyId = sqls.add_company(company, ListSub[loopIn]);
-							sqls.add_detailcompany(companyId, detailcompany);
-							sqls.add_finance(companyId, years,financeAndDe,financeAndDe2);
+							companyId = sqls.checkCompany(company, ListSub[loopIn]);
+							if(companyId!=0){
+								companyId = sqls.add_company(company, ListSub[loopIn]);
+								sqls.add_detailcompany(companyId, detailcompany);
+								sqls.add_finance(companyId, years,financeAndDe,financeAndDe2);
+							}
 							sqls.closedb();
 							printStr(">> addData finance group  "+ListSub[loopIn].substring(0, 5)+" Data Budgeting Year = "+years[0]+","+years[1]+","+years[2]+" Complete!");
 							printStr("----------------- \n");
@@ -596,7 +599,7 @@ public class MainRun extends Engine{
 		printStr(">> GetData All Complete!");
 		printStr(">> Close FireFox!");
 		printStr("---------------------------------");
-		driver.close();
+		//driver.close();
 	}
 	private static int countlist(String a)
 	{
