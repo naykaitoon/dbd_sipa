@@ -3,9 +3,9 @@
 			      event.preventDefault();
 				 var href = $(this).attr('href');
 				$('html').addClass('loading');
+	
 				 $('.loadcombobox').load(href);
-		
-			
+	
         });
 	$('.detialSearchGroup').fancybox({
 		maxWidth	: 1500,
@@ -56,5 +56,7 @@
 <br>
 <br>
 <script>
+
 $( "html" ).removeClass( "loading" );
+
 </script>

@@ -14,6 +14,7 @@ class DbdHome extends CI_Controller {
 
 	}
 	function page($pageC){
+		
 		$data['script'] = "$('.content').load('".base_url()."index.php/dbdHome/".$pageC."');";
 		$data['dataLogin'] = $this->session->userdata('dataLogin');
 		$data['dataLogin'] = $data['dataLogin'][0];
@@ -107,16 +108,14 @@ class DbdHome extends CI_Controller {
 		
 		
 		if($valiError>0&&$valiError!=2&&$valiError!=3){
-			
 			echo "<script>
 			$( 'html' ).removeClass( 'loading' );
 			alert('กรุณาเลือกข้อมุลที่ค้นหาให้ครบถ้วน');
 			</script>";
-			
 		}else{
-		$data['page']=$page;
-		$data['url']="dbdHome/searchResult/".$data['provinceId']."/".$data['districtId']."/".$data['cantonId']."/".$data['companyTypeId']."/".$data['year']."/".$order."/".$orderBy;
-		
+			$data['page']=$page;
+			$data['url']="dbdHome/searchResult/".$data['provinceId']."/".$data['districtId']."/".$data['cantonId']."/".$data['companyTypeId']."/".$data['year']."/".$order."/".$orderBy;
+			
 		if($order==1&&$orderBy=="ASC"){
 			$data['link1']="index.php/dbdHome/searchResult/".$data['provinceId']."/".$data['districtId']."/".$data['cantonId']."/".$data['companyTypeId']."/".$data['year']."/1/DESC";
 		}else{
@@ -455,7 +454,20 @@ function searchResultText($order=1,$orderBy="DESC",$page = 1){
 		$data['detial'] = $this->Search->getDataSelecterJoinDetial($id);
 		$this->load->view('magData/detialCompanyEdit',$data);
 	}
+	function changeGroupType($id){
+		$data['company'] = $this->Search->getDataToChange($id);
+		$data['group'] = $this->GroupAndType->getAllDataGroup();
+		$data['type'] = $this->GroupAndType->getAllDataType();
+		$this->load->view('magData/changeGroupType',$data);
+
+	}
 	
+	function editChangeGroupType($id){
+		$data['companyId'] = $id;
+		$data['companyTypeId'] = $this->input->post('companyTypeId');
+		$this->GroupAndType->editTypeCompany($data);
+		echo "<script>alert('แก้ไขสำเร็จ คลิก เพื่อกลับไปหน้ารายละเอียด');window.location.href = '".base_url()."index.php/dbdHome/getDetial/".$id."'</script>";
+	}
 	function editDetail(){
 		
 	$companyName = $this->input->post('companyName');

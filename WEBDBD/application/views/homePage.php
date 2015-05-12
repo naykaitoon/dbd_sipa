@@ -1,6 +1,7 @@
 <!doctype html>
 <html class="loading">
 <head>
+<link rel="icon" href="<?php echo base_url();?>favicon.ico">
 <meta charset="utf-8">
 <title>SIPA-DBD</title>
 <link  href="<?php echo base_url();?>css/main.css" rel="stylesheet" type="text/css"/> 
@@ -17,11 +18,18 @@
 <script>
  $(document).ready(function(){
 		<?php echo $script;?>
-		 $('.submenucl').click(function() {
-
+		 $('.submenucl').click(function(event) {
+			 event.preventDefault();
 				 var href = $(this).attr('href');
-
-				 window.location.href=href; 
+			 window.location.href = href;
+	
+		
+        });
+		 $('#menu ul li').click(function(event) {
+			 event.preventDefault();
+				 var href = $(this).find("a").attr('href');
+			  window.location.href = href;
+	
 		
         });
 	 });
@@ -32,7 +40,7 @@
 <li id="logo"><img src="/img/logo.png" /></li>
 <li id="textTitle">ระบบฐานข้อมูลธุรกิจ Sipa</li>
 <li id="loginBox">
-  <table width="100%" border="0" cellspacing="0" cellpadding="6">
+  <table width="70%" border="0" cellspacing="0" cellpadding="6" align="right">
     <tbody>
       <tr>
         <td align="right" valign="middle">ยินดีต้อนรับคุณ : </td>
@@ -47,12 +55,12 @@
 </div>
 <div id="menu">
 <ul>
-		<li class="bottomMenu"><a id="loadFormSearch"  href="<?php echo base_url();?>index.php/dbdHome/page/loadFormSearch" class="submenucl">ค้นหาข้อมูล</a></li>
-        <li class="bottomMenu"><a id="magSearch"  href="<?php echo base_url();?>index.php/dbdHome/page/listSearchGroup" class="submenucl">ค้นหาตามชุด</a></li>
-        <li class="bottomMenu"><a id="magSearch"  href="<?php echo base_url();?>index.php/dbdHome/page/magGroupSearch" class="submenucl">จัดการชุดการค้นหา</a></li>
-         <li class="bottomMenu"><a id="magGuoup"  href="<?php echo base_url();?>index.php/dbdHome/page/magGuoup" class="submenucl">จัดการ หมวดหมู่ธุรกิจ</a></li>
-        <li class="bottomMenu"><a id="magType"  href="<?php echo base_url();?>index.php/dbdHome/page/magType" class="submenucl">จัดการ ประเภท</a></li>
-        <li class="bottomMenu"><a id="profi"  href="<?php echo base_url();?>index.php/dbdHome/page/magProfi" class="submenucl">จัดการข้อมูลส่วนตัว</a></li>
+		<li class="myButtonsssssssss"><a id="loadFormSearch"  href="<?php echo base_url();?>index.php/dbdHome/page/loadFormSearch" class="submenucl">ค้นหาข้อมูล</a></li>
+        <li class="myButtonsssssssss"><a id="magSearch"  href="<?php echo base_url();?>index.php/dbdHome/page/listSearchGroup" class="submenucl">ค้นหาตามชุด</a></li>
+        <li class="myButtonsssssssss"><a id="magSearch"  href="<?php echo base_url();?>index.php/dbdHome/page/magGroupSearch" class="submenucl">จัดการชุดการค้นหา</a></li>
+         <li class="myButtonsssssssss"><a id="magGuoup"  href="<?php echo base_url();?>index.php/dbdHome/page/magGuoup" class="submenucl">จัดการ หมวดหมู่ธุรกิจ</a></li>
+        <li class="myButtonsssssssss"><a id="magType"  href="<?php echo base_url();?>index.php/dbdHome/page/magType" class="submenucl">จัดการ ประเภท</a></li>
+        <li class="myButtonsssssssss"><a id="profi"  href="<?php echo base_url();?>index.php/dbdHome/page/magProfi" class="submenucl">จัดการข้อมูลส่วนตัว</a></li>
    </ul>
 </div>
 <div class="content" id="content">

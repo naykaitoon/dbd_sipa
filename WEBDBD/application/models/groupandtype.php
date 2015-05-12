@@ -69,5 +69,11 @@ class GroupAndType extends CI_Model {
 	function addSubGroup($data){
 		$this->db->insert('companytype',$data);
 	}
+	
+	function editTypeCompany($data){
+		$dataUpdate = array("companyTypeId" => $data['companyTypeId']);
+		$this->db->where('companyId',$data['companyId']);
+		$this->db->update('company',$dataUpdate);
+	}
 }
 ?>

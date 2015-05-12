@@ -62,7 +62,7 @@
       <td width="87%"><?php echo $d['email'];?></td>
   </tr>
    <tr>
-      <th colspan="2" align="center" nowrap="nowrap"><a href="<?php echo base_url();?>index.php/dbdHome/getDetialEdit/<?php echo $d['detailcompanyid'];?>"><button class="buttonHome"> แก้ไข</button></a></th>
+      <th colspan="2" align="center" nowrap="nowrap"><a href="<?php echo base_url();?>index.php/dbdHome/getDetialEdit/<?php echo $d['detailcompanyid'];?>"><button class="buttonHome"> แก้ไข</button></a>&nbsp;&nbsp;<a href="<?php echo base_url();?>index.php/dbdHome/changeGroupType/<?php echo $d['companyId'];?>"><button class="buttonHome"> ย้ายหมวด</button></a></th>
   </tr>
 </table>
 <?php }?>

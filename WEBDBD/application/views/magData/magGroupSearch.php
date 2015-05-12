@@ -154,7 +154,7 @@ $('#d').change(function(e) {
   <tbody>
     <tr>
       <td><div class="dragBox">
-<div class="loadcombobox">
+<div class="loadcombobox" >
 
 </div>
   </div></td>
@@ -166,6 +166,7 @@ $('#d').change(function(e) {
 
 <br>
 <br>
+
 <script>
 $( "html" ).removeClass( "loading" );
 </script>

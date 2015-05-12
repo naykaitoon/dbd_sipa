@@ -239,7 +239,13 @@ class Search extends CI_Model {
 		$this->db->group_by('titleCompany');
 		return $this->db->get('detailcompany')->result_array();
 	}
-	
+	function getDataToChange($id){
+		$this->db->join('companytype','companytype.companyTypeId = company.companyTypeId');
+		$this->db->join('groupcompany','groupcompany.groupCompanyId = companytype.groupCompanyId');
+		$this->db->where('company.companyId',$id);
+		$this->db->limit(1);
+		return $this->db->get('company')->result_array();	
+	}
 
 }
 ?>

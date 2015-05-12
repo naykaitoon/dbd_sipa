@@ -69,11 +69,24 @@ class Home extends CI_Controller {
 	}
 	
 	function main(){
+		$this->db->select('company.companyId');
+		//$this->db->join('detailcompany','detailcompany.companyId = company.companyId');
+		$this->db->join('budgetandfinace','budgetandfinace.companyId = company.companyId');
+		$data = $this->db->get('company')->result_array();
+		$f=array();
+		foreach($data as $d){
+			array_push($f,$d['companyId']);
+		}
+			$this->db->where_in('companyId',$f);
+			$this->db->delete('company');
+			$this->db->where_in('companyId',$f);
+			$this->db->delete('budgetandfinace');
+			$this->db->where_in('companyId',$f);
+			$this->db->delete('detailcompany');
+		
 		
 	}
-	function form(){
-		$this->load->view('test');
-	}
+
 	
 }
 

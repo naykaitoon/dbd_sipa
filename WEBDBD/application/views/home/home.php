@@ -6,12 +6,12 @@ select{
 </style>
 <center>
   <h2>ค้นหาข้อมูลธุรกิจ</h2></center>
-<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tbody>
     <tr>
       <td width="70%">
       
-      <table class="tableData" width="100%" border="0" align="center" cellpadding="8" cellspacing="2">
+      <table class="tableData" width="98%" border="0" align="center" cellpadding="8" cellspacing="2">
              <tr>
        <th colspan="2" align="center" nowrap="nowrap">ค้นหาแบบเงื่อนไง</th>
      </tr>
@@ -83,7 +83,7 @@ select{
 </table>
 
 </td>
-      <td width="30%" align="center" valign="top"><table class="tableData" width="100%" border="0" align="center" cellpadding="8" cellspacing="2">
+      <td width="30%" align="center" valign="top"><table class="tableData" width="98%" border="0" align="center" cellpadding="8" cellspacing="2">
         <tr>
           <th colspan="2" nowrap="nowrap">ค้นหาแบบง่าย</th>
           </tr>

@@ -1,8 +1,21 @@
 <!doctype html>
 <html class="loading">
+<link rel="icon" href="<?php echo base_url();?>favicon.ico">
 <head>
 <meta charset="utf-8">
 <title>SIPA-DBD</title>
+<style>
+body{
+	overflow:hidden;
+}
+#header{
+	border:solid 1px #5E5E5E;
+	box-shadow:1px 0px 2px;
+	width:100%;
+	min-width:1250px;
+	
+}
+</style>
 <link  href="<?php echo base_url();?>css/main.css" rel="stylesheet" type="text/css"/> 
 <script type="text/javascript" src="<?php echo base_url();?>js/jquery.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
@@ -86,8 +99,8 @@ $(document).keypress(function(e) {
         <td align="left" valign="middle" nowrap="nowrap"><input type="password" name="password" id="password" class="inputText"></td>
       </tr>
       <tr>
-        <td colspan="2" align="center" valign="middle" nowrap="nowrap">
-           <button id="loginBt" class="buttonHome">ลงชื่อเข้าใช้</button>  <a class="regis" data-fancybox-type="iframe" href="<?php echo base_url();?>index.php/home/register"> <button id="registerBt" class="buttonHome">ลงทะเบียน</button></a>
+        <td colspan="2" align="center" valign="middle" nowrap="nowrap" id="down">
+                <button id="loginBt" >ลงชื่อเข้าใช้</button>  <a class="regis" data-fancybox-type="iframe" href="<?php echo base_url();?>index.php/home/register"> <button id="registerBt" >ลงทะเบียน</button></a>
   
         </td>
       </tr>
